@@ -56,7 +56,6 @@ coolify_api_request() {
     rm "$TEMP_RESPONSE_FILE"
 
     if [[ "$HTTP_STATUS" -ge 200 && "$HTTP_STATUS" -lt 300 ]]; then
-        log "Request Failed. HTTP Status: $HTTP_STATUS. API Response Body: $RESPONSE_BODY" 2
         return 0
     else
         log "Request Failed. HTTP Status: $HTTP_STATUS. API Response Body: $RESPONSE_BODY" 2
