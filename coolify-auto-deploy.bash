@@ -17,7 +17,7 @@ log() {
     if (( LOG_LEVEL >= LOG_LEVEL_THRESHOLD || LOG_LEVEL == -1 )); then
         local OUTPUT="$(date '+%Y-%m-%d %H:%M:%S') [$LEVEL_NAME] - $1"
 
-        if [ -e "$LOG_FILE"] || touch "$LOG_FILE" 2>/dev/null; then
+        if [[ -e "$LOG_FILE" ]] || touch "$LOG_FILE" 2>/dev/null; then
             echo "$OUTPUT" >>"$LOG_FILE"
         else
             echo "$OUTPUT" >>"$LOG_FILE_DEBUG"
