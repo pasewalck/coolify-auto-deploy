@@ -10,8 +10,8 @@ install:
 
 	@install -m 0755 coolify-auto-deploy.bash $(PREFIX)/coolify-auto-deploy
 
-	@install -m 0644 src/system/coolify-auto-deploy.service $(SYSTEM_DIR)/
-	@install -m 0644 src/system/coolify-auto-deploy.timer $(SYSTEM_DIR)/
+	@install -m 0644 system/coolify-auto-deploy.service $(SYSTEM_DIR)/
+	@install -m 0644 system/coolify-auto-deploy.timer $(SYSTEM_DIR)/
 
 	@systemctl daemon-reload
 	@systemctl enable coolify-auto-deploy.timer
