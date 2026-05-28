@@ -1,5 +1,6 @@
 #!/bin/bash
 LOG_FILE="/var/log/coolify-auto-deploy.log"
+LOG_FILE_DEBUG="./coolify-auto-deploy.log"
 
 log() {
     local LEVEL_NAME="UNKNOWN"
@@ -14,7 +15,13 @@ log() {
     esac
 
     if (( LOG_LEVEL >= LOG_LEVEL_THRESHOLD || LOG_LEVEL == -1 )); then
-        echo "$(date '+%Y-%m-%d %H:%M:%S') [$LEVEL_NAME] - $1" >>"$LOG_FILE"
+        local OUTPUT="$(date '+%Y-%m-%d %H:%M:%S') [$LEVEL_NAME] - $1"
+
+        if [ -e "$LOG_FILE"] || touch "$LOG_FILE" 2>/dev/null; then
+            echo "$OUTPUT" >>"$LOG_FILE"
+        else
+            echo "$OUTPUT" >>"$LOG_FILE_DEBUG"
+        fi
     fi
 }
 
