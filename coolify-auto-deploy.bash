@@ -14,7 +14,7 @@ log() {
     esac
 
     if (( LOG_LEVEL >= LOG_LEVEL_THRESHOLD || LOG_LEVEL == -1 )); then
-        echo "$(date '+%Y-%m-%d %H:%M:%S') [$LEVEL_NAME] - $1" # >>"$LOG_FILE"
+        echo "$(date '+%Y-%m-%d %H:%M:%S') [$LEVEL_NAME] - $1" >>"$LOG_FILE"
     fi
 }
 
