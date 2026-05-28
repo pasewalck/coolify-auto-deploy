@@ -1,0 +1,10 @@
+# /etc/systemd/system/coolify-auto-deploy.timer
+[Unit]
+Description=Hourly Health Checks and Redeployments
+
+[Timer]
+OnCalendar=*:0/30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

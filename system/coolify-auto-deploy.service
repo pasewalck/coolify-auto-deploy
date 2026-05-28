@@ -1,0 +1,10 @@
+# /etc/systemd/system/coolify-auto-deploy.service
+
+[Unit]
+Description=Hourly Health Checks and Redeployments
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/coolify-auto-deploy
