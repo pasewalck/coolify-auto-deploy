@@ -71,7 +71,7 @@ health_check() {
     local RESPONSE_BODY=$(cat "$TEMP_RESPONSE_FILE")
     rm "$TEMP_RESPONSE_FILE"
 
-    if [[ "$HTTP_STATUS" -ge 200 ]]; then
+    if [[ "$HTTP_STATUS" -ge 200 && "$HTTP_STATUS" -lt 300 ]]; then
         return 0
     else
         return 1
@@ -87,7 +87,7 @@ else
     exit 1
 fi
 
-if health_check ; then
+if health_check; then
     log "'$SERVICE_ID' is healthy ..." 1
 else
     log "'$SERVICE_ID' is unhealthy ..." 1
