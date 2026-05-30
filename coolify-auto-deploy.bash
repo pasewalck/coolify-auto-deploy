@@ -64,8 +64,12 @@ coolify_api_request() {
 }
 
 health_check() {
+    local TEMP_RESPONSE_FILE=$(mktemp)
 
-    local HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${HEALTH_URL}")
+    local HTTP_STATUS=$(curl -s -o "$TEMP_RESPONSE_FILE" -w "%{http_code}" "${HEALTH_URL}")
+
+    local RESPONSE_BODY=$(cat "$TEMP_RESPONSE_FILE")
+    rm "$TEMP_RESPONSE_FILE"
 
     if [[ "$HTTP_STATUS" -ge 200 ]]; then
         return 0
